@@ -1,29 +1,34 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
+import { store } from './store.js'
+import axios from 'axios'
+export default {
+  components:{
+    AppHeader,
+    AppMain
+  },
+  data(){
+    return{
+      store
+    }
+  },
+  mounted(){
+    this.getMovies()
+  },
+  methods: {
+    getMovies(){
+      axios.get('https://api.themoviedb.org/3/search/movie?api_key=128fe074fca8ea8bdaf25144294f8033&query=ritorno+al+futuro').then((response) => {
+        store.moviesArray = response.data.results
+      })
+    }
+  },
+}
 </script>
-
-<template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+<template lang="">
+  <AppHeader/>
+  <AppMain/>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style lang="scss">
+  @use './styles/generals.scss';
 </style>
