@@ -17,16 +17,23 @@ export default {
     this.getMovies()
   },
   methods: {
-    getMovies(){
-      axios.get('https://api.themoviedb.org/3/search/movie?api_key=128fe074fca8ea8bdaf25144294f8033&query=ritorno+al+futuro').then((response) => {
-        store.moviesArray = response.data.results
-      })
+    getMovies(word){
+      if(word === undefined){
+        axios.get(store.url + 'ritorno+al+futuro').then((response) => {
+          store.moviesArray = response.data.results
+        })
+      }
+      else{
+        axios.get(store.url + word).then((response) => {
+          store.moviesArray = response.data.results
+        })
+      }
     }
-  },
+  }
 }
 </script>
 <template lang="">
-  <AppHeader/>
+  <AppHeader @search="getMovies"/>
   <AppMain/>
 </template>
 <style lang="scss">
