@@ -23,6 +23,9 @@ export default {
           store.moviesArray = response.data.results
         })
       }
+      else if(word === ''){
+        store.moviesArray = ''
+      }
       else{
         axios.get(store.url + word).then((response) => {
           store.moviesArray = response.data.results
