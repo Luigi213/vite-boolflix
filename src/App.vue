@@ -19,7 +19,7 @@ export default {
   methods: {
     getMovies(word){
       if(word === undefined){
-        axios.get(store.url + 'ritorno+al+futuro').then((response) => {
+        axios.get(store.urlMovies + 'ritorno+al+futuro').then((response) => {
           store.moviesArray = response.data.results
         })
       }
@@ -27,11 +27,24 @@ export default {
         store.moviesArray = ''
       }
       else{
-        axios.get(store.url + word).then((response) => {
+        axios.get(store.urlMovies + word).then((response) => {
           store.moviesArray = response.data.results
         })
       }
-    }
+      if(word === undefined){
+        axios.get(store.urlSeries + 'scrubs').then((response) => {
+          store.seriesArray = response.data.results
+        })
+      }
+      else if(word === ''){
+        store.seriesArray = ''
+      }
+      else{
+        axios.get(store.urlSeries + word).then((response) => {
+          store.seriesArray = response.data.results
+        })
+      }
+    },
   }
 }
 </script>

@@ -2,22 +2,29 @@
 export default {
     data(){    
         return{
-            movieSearch: ''
+            find: '',
         }
     },
     methods: {
         send(){
-            this.$emit('search', this.movieSearch)
+            this.$emit('search', this.find)
         }
     },
 }
 </script>
 <template lang="">
     <div class="container">
-        <input v-model="movieSearch" @keyup.enter="send" type="text">
-        <button @click="send">search</button>
+        <div class="row">
+            <input v-model="find" @keyup.enter="send" type="text">
+            <button @click="send">search</button>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
-    
+    .container{
+        .row{
+            display: flex;
+            justify-content: center;
+        }
+    }
 </style>
