@@ -22,15 +22,12 @@ export default {
         axios.get(store.urlMovies + 'ritorno+al+futuro').then((response,index) => {
           let moviD = response.data.results
           store.moviesArray = response.data.results
-          let ciao = []
           for(let i=0; i < moviD.length; i++){
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
-            ciao.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
           }
-          store.imagesArray = ciao
-          console.log(store.imagesArray)
         })
       }
       else if(word === ''){
@@ -40,17 +37,22 @@ export default {
         axios.get(store.urlMovies + word).then((response) => {
           let moviD = response.data.results
           store.moviesArray = response.data.results
+          store.imagesArrayMovies = []
           for(let i=0; i < moviD.length; i++){
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
-            store.imagesArray = `https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`
+            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w300${moviD[i].backdrop_path}`)
           }
         })
       }
       if(word === undefined){
         axios.get(store.urlSeries + 'scrubs').then((response) => {
+          let moviD = response.data.results
           store.seriesArray = response.data.results
+          for(let i=0; i < moviD.length; i++){
+            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+          }
         })
       }
       else if(word === ''){
@@ -58,7 +60,12 @@ export default {
       }
       else{
         axios.get(store.urlSeries + word).then((response) => {
+          let moviD = response.data.results
           store.seriesArray = response.data.results
+          store.imagesArraySeries = []
+          for(let i=0; i < moviD.length; i++){
+            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+          }
         })
       }
     },

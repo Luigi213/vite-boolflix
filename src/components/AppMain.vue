@@ -20,7 +20,12 @@ export default {
             <div>
                 <ul>
                     <li v-for="(movie, index) in store.moviesArray" :key="index">
-                        <img :src="store.imagesArray[index]">
+                        <div v-if="movie.backdrop_path != null"> 
+                            <img :src="store.imagesArrayMovies[index]">
+                        </div>
+                        <div class="not-available" v-else>
+                            <h2>NOT AVAILABLE</h2>
+                        </div>
                         <appFlagsMovies :moviesId="movie"/>
                     </li>
                 </ul>
@@ -28,6 +33,12 @@ export default {
             <div>
                 <ul>
                     <li v-for="(serie, index) in store.seriesArray" :key="index">
+                        <div v-if="serie.backdrop_path != null"> 
+                            <img :src="store.imagesArraySeries[index]">
+                        </div>
+                        <div class="not-available" v-else>
+                            <h2>NOT AVAILABLE</h2>
+                        </div>
                         <appFlagsSeries :seriesId="serie"/>
                     </li>
                 </ul>
@@ -40,6 +51,10 @@ export default {
         .row{
             display: flex;
             justify-content: space-around;
+            .not-available{
+                text-align: center;
+                background-color: red;
+            }
         }
     }
 </style>
