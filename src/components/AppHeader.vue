@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <template lang="">
-    <div class="container">
+    <div class="container-header">
         <div class="row">
             <input v-model="find" @keyup.enter="send" type="text">
             <button @click="send">search</button>
@@ -21,7 +21,9 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-    .container{
+    .container-header{
+        width: 90%;
+        margin: 0 auto;
         .row{
             display: flex;
             justify-content: center;
