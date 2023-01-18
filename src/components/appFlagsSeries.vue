@@ -7,20 +7,35 @@ export default {
 </script>
 <template lang="">
     <div>
-        <div>
-            <h4>Titolo: {{ seriesId.name }}</h4> 
-            <h5>Titolo Originale: {{ seriesId.original_name}}</h5> 
+        <div class="title">
+            <div><b>Titolo:</b>{{ seriesId.name }}</div> 
+            <div><b>Titolo Originale:</b>{{ seriesId.original_name}}</div> 
+            <div><b>Overview:</b>{{ seriesId.overview}}</div> 
         </div>
         <div class="flag-content" v-if="seriesId.origin_country[0] != undefined">
-            Lingua:  <img :src="`https://flagsapi.com/${seriesId.origin_country[0]}/flat/16.png`">
+            <span> <b>Lingua:</b></span>   <img :src="`https://flagsapi.com/${seriesId.origin_country[0]}/flat/16.png`" :alt="seriesId.origin_country[0]">
         </div> 
         <div class="flag-content" v-else>
-            Lingua:  <img src="https://flagsapi.com/GB/flat/16.png">
+            <span> <b>Lingua:</b></span> <img src="https://flagsapi.com/GB/flat/16.png" alt="GB">
         </div>
     </div>
 </template>
 <style lang="scss" scoped>
+    @use '../styles/partials/variables' as *;
+    .title{
+        width: 335px;
+        padding: $padding;
+        color: $primary;
+        line-height: 25px;
+        div{
+            width: 100%;
+        }
+    }
     .flag-content{
         display: flex;
+        color: $primary;
+        span{
+            padding: $padding_flag;
+        }
     }
 </style>

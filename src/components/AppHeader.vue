@@ -13,20 +13,27 @@ export default {
 }
 </script>
 <template lang="">
-    <div class="container-header">
-        <div class="row">
-            <input v-model="find" @keyup.enter="send" type="text">
-            <button @click="send">search</button>
+    <header class="bg-header">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img src="https://image.tmdb.org/t/p/w92/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">
+                </div>
+                <div>
+                    <input v-model="find" @keyup.enter="send" type="text">
+                    <button @click="send"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 </template>
 <style lang="scss" scoped>
-    .container-header{
-        width: 90%;
-        margin: 0 auto;
+    .bg-header{
+        background-color: rgb(10, 10, 10);
         .row{
+            padding: 20px 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
         }
     }
 </style>
