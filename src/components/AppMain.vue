@@ -18,10 +18,19 @@ export default {
     <div class="container">
         <div class="row">
             <div>
-                <appFlagsMovies v-for="(movie, index) in store.moviesArray" :key="index" :moviesId="movie"/>
+                <ul>
+                    <li v-for="(movie, index) in store.moviesArray" :key="index">
+                        <img :src="store.imagesArray[index]">
+                        <appFlagsMovies :moviesId="movie"/>
+                    </li>
+                </ul>
             </div>
             <div>
-                <appFlagsSeries v-for="(serie, index) in store.seriesArray" :key="index" :seriesId="serie"/>
+                <ul>
+                    <li v-for="(serie, index) in store.seriesArray" :key="index">
+                        <appFlagsSeries :seriesId="serie"/>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

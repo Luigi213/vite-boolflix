@@ -14,19 +14,23 @@ export default {
     }
   },
   mounted(){
-    this.getMovies()
+    this.getMoviesSeries()
   },
   methods: {
-    getMovies(word){
+    getMoviesSeries(word){
       if(word === undefined){
         axios.get(store.urlMovies + 'ritorno+al+futuro').then((response,index) => {
-          let ciao = response.data.results
+          let moviD = response.data.results
           store.moviesArray = response.data.results
-          for(let i=0; i < ciao.length; i++){
-            axios.get(`https://api.themoviedb.org/3/movie/${ciao[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+          let ciao = []
+          for(let i=0; i < moviD.length; i++){
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
+            ciao.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
           }
+          store.imagesArray = ciao
+          console.log(store.imagesArray)
         })
       }
       else if(word === ''){
@@ -34,12 +38,13 @@ export default {
       }
       else{
         axios.get(store.urlMovies + word).then((response) => {
-          let ciao = response.data.results
+          let moviD = response.data.results
           store.moviesArray = response.data.results
-          for(let i=0; i < ciao.length; i++){
-            axios.get(`https://api.themoviedb.org/3/movie/${ciao[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+          for(let i=0; i < moviD.length; i++){
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
+            store.imagesArray = `https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`
           }
         })
       }
@@ -61,7 +66,7 @@ export default {
 }
 </script>
 <template lang="">
-  <AppHeader @search="getMovies"/>
+  <AppHeader @search="getMoviesSeries"/>
   <AppMain/>
 </template>
 <style lang="scss">
