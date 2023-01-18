@@ -1,6 +1,5 @@
 <script>
 import { store } from '../store.js'
-import axios from 'axios'
 export default {
     props:{
         moviesId: Object
@@ -18,7 +17,7 @@ export default {
         <li>
             <h4>Titolo: {{ moviesId.title }}</h4> 
             <h5>Titolo Originale: {{ moviesId.original_title}}</h5> 
-            <div class="flag">
+            <div class="flag-content">
                 <span>Lingua:</span>
                 <div v-if="moviesId.original_language === 'en'">
                     <img src="https://flagsapi.com/GB/flat/16.png">
@@ -35,7 +34,12 @@ export default {
     </ul>
 </template>
 <style lang="scss" scoped>
-    .flag{
-        display: flex;
+    ul{
+        li{
+            margin: 10px 0;
+            .flag-content{
+                display: flex;
+            }
+        }
     }
 </style>
