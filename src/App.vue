@@ -26,7 +26,7 @@ export default {
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
-            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
           }
         })
       }
@@ -42,7 +42,7 @@ export default {
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
-            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w300${moviD[i].backdrop_path}`)
+            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
           }
         })
       }
@@ -51,7 +51,7 @@ export default {
           let moviD = response.data.results
           store.seriesArray = response.data.results
           for(let i=0; i < moviD.length; i++){
-            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
           }
         })
       }
@@ -64,7 +64,7 @@ export default {
           store.seriesArray = response.data.results
           store.imagesArraySeries = []
           for(let i=0; i < moviD.length; i++){
-            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].backdrop_path}`)
+            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
           }
         })
       }

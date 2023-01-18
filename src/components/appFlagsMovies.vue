@@ -30,16 +30,10 @@ export default {
                 <img :src="`https://flagsapi.com/${flagMovie.iso_3166_1}/flat/16.png`">
             </div>
         </div>
-        <p>Voto: {{ moviesId.vote_average }}</p>
     </div>
 </template>
 <style lang="scss" scoped>
-    ul{
-        li{
-            margin: 10px 0;
-            .flag-content{
-                display: flex;
-            }
-        }
+    .flag-content{
+        display: flex;
     }
 </style>
