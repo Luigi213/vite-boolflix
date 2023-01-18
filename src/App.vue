@@ -19,8 +19,14 @@ export default {
   methods: {
     getMovies(word){
       if(word === undefined){
-        axios.get(store.urlMovies + 'ritorno+al+futuro').then((response) => {
+        axios.get(store.urlMovies + 'ritorno+al+futuro').then((response,index) => {
+          let ciao = response.data.results
           store.moviesArray = response.data.results
+          for(let i=0; i < ciao.length; i++){
+            axios.get(`https://api.themoviedb.org/3/movie/${ciao[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.countryArray = response.data
+            })
+          }
         })
       }
       else if(word === ''){
@@ -28,7 +34,13 @@ export default {
       }
       else{
         axios.get(store.urlMovies + word).then((response) => {
+          let ciao = response.data.results
           store.moviesArray = response.data.results
+          for(let i=0; i < ciao.length; i++){
+            axios.get(`https://api.themoviedb.org/3/movie/${ciao[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.countryArray = response.data
+            })
+          }
         })
       }
       if(word === undefined){

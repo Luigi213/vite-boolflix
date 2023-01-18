@@ -8,7 +8,7 @@ export default {
     methods: {
         send(){
             this.$emit('search', this.find)
-        }
+        },
     },
 }
 </script>
