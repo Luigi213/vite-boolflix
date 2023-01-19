@@ -11,6 +11,9 @@ export default {
         appGenreMovies,
         appGenreSeries
     },
+    props:{
+        actors: Array
+    },
     data(){
         return{
             store,
@@ -47,6 +50,20 @@ export default {
             })
             return genreSeries
         },
+        getActorsMovies(){
+            let actorMovies = []
+            store.actorsArrayMovies.filter((elem) =>{
+                return actorMovies.push(elem)
+            })
+            return actorMovies
+        },
+        getActorsSeries(){
+            let actorSeries = []
+            store.actorsArraySeries.filter((elem) =>{
+                return actorSeries.push(elem)
+            })
+            return actorSeries
+        }
     }
 }
 </script>
@@ -63,8 +80,16 @@ export default {
                         <div class="position">
                             <appFlagsMovies :moviesId="movie"/>
                             <div class="genre">
-                                <span>Genere: </span>
+                                <span><b> Genere:</b> </span>
                                 <appGenreMovies v-for="(genId, index) in genreMoviesId[index]" :key="index" :genMoviesArray="genId"/>
+                            </div>
+                            <div class="actor">
+                                <span><b>Actor:</b>  </span> 
+                                <div class="name-actor" v-for="(actor,index) in getActorsMovies[index]" :key="index">
+                                    <div v-if="index < 5">
+                                        {{actor.name}},
+                                    </div>
+                                </div>
                             </div>
                             <div class="vote" v-if="starsMovies[index] !== 0">
                                 <span><b>VOTO:</b></span><i v-for="(star, index) in starsMovies[index]" :key="index" class="fa-solid fa-star"></i>
@@ -87,8 +112,16 @@ export default {
                         <div class="position">
                             <appFlagsSeries :seriesId="serie"/>
                             <div class="genre">
-                                <span>Genere: </span>
+                                <span><b>Genere:</b></span>
                                 <appGenreSeries v-for="(genId, index) in genreSeriesId[index]" :key="index" :genSeriesArray="genId"/>
+                            </div>
+                            <div class="actor">
+                                <span><b>Actor:</b>  </span> 
+                                <div class="name-actor" v-for="(actor,index) in getActorsSeries[index]" :key="index">
+                                    <div v-if="index < 5">
+                                        {{actor.name}},
+                                    </div>
+                                </div>
                             </div>
                             <div class="vote" v-if="starsSeries[index] !== 0">
                                 <span><b>VOTO:</b></span> <i v-for="(star, index) in starsSeries[index]" :key="index" class="fa-solid fa-star"></i>
@@ -150,17 +183,29 @@ export default {
                         display: block;
                     }
                     .position{
+                        font-size: 12px;
                         overflow: hidden;
                         height: 513px;
                         position: absolute;
                         display: none;
                         top:0;          
-                        line-height: 30px;              
-                        .vote, .genre, .no_star{
+                        line-height: 30px;    
+                        b{
+                            color: $tertiary;
+                        }  
+                        .actors{
+                            color: $primary;
+                        }        
+                        .vote, .genre, .no_star, .actor{
                             padding: $padding_flag;
                         }
                         .genre{
                             display: flex;
+                            color: $primary;
+                        }
+                        .actor{
+                            display: flex;
+                            flex-wrap: wrap;
                             color: $primary;
                         }
                         .no_star{

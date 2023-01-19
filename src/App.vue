@@ -27,6 +27,9 @@ export default {
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}/credits?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.actorsArrayMovies.push(response.data.cast)
+            })
             store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
           }
         })
@@ -39,11 +42,17 @@ export default {
           let moviD = response.data.results
           store.moviesArray = response.data.results
           store.imagesArrayMovies = []
+          store.actorsArrayMovies = []
           for(let i=0; i < moviD.length; i++){
             axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
               store.countryArray = response.data
             })
-            store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}/credits?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.actorsArrayMovies.push(response.data.cast)
+            })
+            if(moviD[i].poster_path !== null){
+              store.imagesArrayMovies.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
+            }
           }
         })
       }
@@ -53,6 +62,9 @@ export default {
           store.seriesArray = response.data.results
           for(let i=0; i < moviD.length; i++){
             store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}/credits?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.actorsArraySeries.push(response.data.cast)
+            })
           }
         })
       }
@@ -64,8 +76,14 @@ export default {
           let moviD = response.data.results
           store.seriesArray = response.data.results
           store.imagesArraySeries = []
+          store.actorsArraySeries = []
           for(let i=0; i < moviD.length; i++){
-            store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
+            axios.get(`https://api.themoviedb.org/3/movie/${moviD[i].id}/credits?api_key=128fe074fca8ea8bdaf25144294f8033`).then((response) => {
+              store.actorsArraySeries.push(response.data.cast)
+            })
+            if(moviD[i].poster_path !== null){
+              store.imagesArraySeries.push(`https://image.tmdb.org/t/phttps://image.tmdb.org/t/p/w342${moviD[i].poster_path}`)
+            }
           }
         })
       }

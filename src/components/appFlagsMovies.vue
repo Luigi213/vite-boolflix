@@ -20,7 +20,7 @@ export default {
             <div><b>Overview:</b>{{ moviesId.overview}}</div> 
         </div>
         <div class="flag-content">
-            <span>Lingua:</span>
+            <span><b>Lingua:</b></span>
             <div v-if="moviesId.original_language === 'en'">
                 <img src="https://flagsapi.com/GB/flat/16.png" alt="EN">
             </div>
@@ -44,12 +44,18 @@ export default {
         span{
             color: $primary;
         }
+        b{
+            color: $tertiary;
+        }
     }
     .title{
         width: 335px;
         padding: $padding;
         line-height: 25px;
         color: $primary;
+        b{
+            color:$tertiary;
+        }
         div{
             width: 100%;
         }
