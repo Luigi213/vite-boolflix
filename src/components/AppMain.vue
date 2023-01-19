@@ -47,7 +47,7 @@ export default {
                             <div class="vote" v-if="starsMovies[index] !== 0">
                                 <span><b>VOTO:</b></span><i v-for="(star, index) in starsMovies[index]" :key="index" class="fa-solid fa-star"></i>
                             </div>
-                            <div v-else>NO STAR</div>
+                            <div class="no_star" v-else>NO STAR</div>
                         </div>
                     </li>
                 </ul>
