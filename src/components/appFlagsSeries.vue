@@ -13,10 +13,10 @@ export default {
             <div><b>Overview:</b>{{ seriesId.overview}}</div> 
         </div>
         <div class="flag-content" v-if="seriesId.origin_country[0] != undefined">
-            <span> <b>Lingua:</b></span>   <img :src="`https://flagsapi.com/${seriesId.origin_country[0]}/flat/16.png`" :alt="seriesId.origin_country[0]">
+            <span> <b>Lingua:</b></span><img :src="`https://flagsapi.com/${seriesId.origin_country[0]}/flat/16.png`" :alt="seriesId.origin_country[0]">
         </div> 
         <div class="flag-content" v-else>
-            <span> <b>Lingua:</b></span> <img src="https://flagsapi.com/GB/flat/16.png" alt="GB">
+            <span> <b>Lingua:</b></span><img src="https://flagsapi.com/GB/flat/16.png" alt="GB">
         </div>
     </div>
 </template>
@@ -34,8 +34,6 @@ export default {
     .flag-content{
         display: flex;
         color: $primary;
-        span{
-            padding: $padding_flag;
-        }
+        padding: $padding_flag;
     }
 </style>
