@@ -84,7 +84,7 @@ export default {
                                 <appGenreMovies v-for="(genId, index) in genreMoviesId[index]" :key="index" :genMoviesArray="genId"/>
                             </div>
                             <div class="actor">
-                                <span><b>Actor:</b>  </span> 
+                                <span><b>Attoru:</b>  </span> 
                                 <div class="name-actor" v-for="(actor,index) in getActorsMovies[index]" :key="index">
                                     <div v-if="index < 5">
                                         {{actor.name}},
@@ -116,7 +116,7 @@ export default {
                                 <appGenreSeries v-for="(genId, index) in genreSeriesId[index]" :key="index" :genSeriesArray="genId"/>
                             </div>
                             <div class="actor">
-                                <span><b>Actor:</b>  </span> 
+                                <span><b>Attori:</b>  </span> 
                                 <div class="name-actor" v-for="(actor,index) in getActorsSeries[index]" :key="index">
                                     <div v-if="index < 5">
                                         {{actor.name}},
