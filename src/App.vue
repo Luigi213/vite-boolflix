@@ -15,6 +15,7 @@ export default {
   },
   mounted(){
     this.getMoviesSeries()
+    this.getGenre()
   },
   methods: {
     getMoviesSeries(word){
@@ -69,6 +70,11 @@ export default {
         })
       }
     },
+    getGenre(){
+      axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=128fe074fca8ea8bdaf25144294f8033').then((response) =>{
+        store.genre = response.data.genres
+      })
+    }
   }
 }
 </script>

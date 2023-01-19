@@ -7,5 +7,6 @@ export const store = reactive({
     imagesArraySeries: [],
     moviesArray: [],
     seriesArray: [],
-    countryArray: []
+    countryArray: [],
+    genre: []
 })  

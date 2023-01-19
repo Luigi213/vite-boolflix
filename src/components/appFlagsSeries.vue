@@ -32,8 +32,10 @@ export default {
         }
     }
     .flag-content{
-        display: flex;
         color: $primary;
         padding: $padding_flag;
+        img{
+            vertical-align: middle;
+        }
     }
 </style>

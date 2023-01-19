@@ -37,6 +37,9 @@ export default {
     @use '../styles/partials/variables' as *;
     .flag-content{
         display: flex;
+        img{
+            vertical-align: middle;
+        }
         padding: $padding_flag;
         span{
             color: $primary;
