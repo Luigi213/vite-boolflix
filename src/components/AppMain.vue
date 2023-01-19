@@ -1,13 +1,15 @@
 <script>
 import appFlagsMovies from './appFlagsMovies.vue'
 import appFlagsSeries from './appFlagsSeries.vue'
-import appGenre from './appGenre.vue'
+import appGenreMovies from './appGenreMovies.vue'
+import appGenreSeries from './appGenreSeries.vue'
 import { store } from '../store.js'
 export default {
     components:{
         appFlagsMovies,
         appFlagsSeries,
-        appGenre
+        appGenreMovies,
+        appGenreSeries
     },
     data(){
         return{
@@ -36,7 +38,6 @@ export default {
             store.moviesArray.filter((elem) =>{
                 return genreMovies.push(elem.genre_ids)
             })
-            console.log(genreMovies[0])
             return genreMovies
         },
         genreSeriesId(){
@@ -44,7 +45,6 @@ export default {
             store.seriesArray.filter((elem) =>{
                 return genreSeries.push(elem.genre_ids)
             })
-            console.log(genreSeries[0])
             return genreSeries
         },
     }
@@ -64,7 +64,7 @@ export default {
                             <appFlagsMovies :moviesId="movie"/>
                             <div class="genre">
                                 <span>Genere: </span>
-                                <appGenre v-for="(genId, index) in genreMoviesId[index]" :key="index" :genMoviesArray="genId"/>
+                                <appGenreMovies v-for="(genId, index) in genreMoviesId[index]" :key="index" :genMoviesArray="genId"/>
                             </div>
                             <div class="vote" v-if="starsMovies[index] !== 0">
                                 <span><b>VOTO:</b></span><i v-for="(star, index) in starsMovies[index]" :key="index" class="fa-solid fa-star"></i>
@@ -88,7 +88,7 @@ export default {
                             <appFlagsSeries :seriesId="serie"/>
                             <div class="genre">
                                 <span>Genere: </span>
-                                <appGenre v-for="(genId, index) in genreSeriesId[index]" :key="index" :genSeriesArray="genId"/>
+                                <appGenreSeries v-for="(genId, index) in genreSeriesId[index]" :key="index" :genSeriesArray="genId"/>
                             </div>
                             <div class="vote" v-if="starsSeries[index] !== 0">
                                 <span><b>VOTO:</b></span> <i v-for="(star, index) in starsSeries[index]" :key="index" class="fa-solid fa-star"></i>
@@ -127,7 +127,8 @@ export default {
                     .not_available{
                         img{
                             width: 342px;
-                            height: 400px;
+                            height: 513px;
+                            object-fit: cover;
                         }
                     }
                     i{
@@ -149,6 +150,8 @@ export default {
                         display: block;
                     }
                     .position{
+                        overflow: hidden;
+                        height: 513px;
                         position: absolute;
                         display: none;
                         top:0;          
